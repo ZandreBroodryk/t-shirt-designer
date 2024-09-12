@@ -137,7 +137,6 @@ export default function ShirtCanvas(): JSX.Element {
         <Canvas camera={{ position: [0, 0, 2.5], fov: 25 }}>
           <ambientLight intensity={0.5} />
           <CameraRig>
-            {/* <Backdrop /> */}
             <Center>
               <Shirt decals={decals} />
             </Center>
@@ -151,6 +150,7 @@ export default function ShirtCanvas(): JSX.Element {
               position: [0, 0, 3.5],
               fov: 30,
             }}
+            gl={{ preserveDrawingBuffer: true }}
           >
             <ambientLight intensity={0.5} />
             <Shirt
