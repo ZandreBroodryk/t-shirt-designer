@@ -5,7 +5,6 @@ import Shirt from "./shirt";
 import { useState } from "react";
 import { MathUtils, Vector3 } from "three";
 import { DecalType } from "../../shared/types";
-import Backdrop from "../atoms/backdrop";
 
 export default function ShirtCanvas(): JSX.Element {
   const [decals, setDecals] = useState<DecalType[]>([]);
@@ -153,7 +152,6 @@ export default function ShirtCanvas(): JSX.Element {
               fov: 30,
             }}
           >
-            <Backdrop />
             <ambientLight intensity={0.5} />
             <Shirt
               decals={decals}
