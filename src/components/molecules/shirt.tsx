@@ -1,5 +1,5 @@
 import { Decal, useGLTF, useTexture } from "@react-three/drei";
-import { Mesh, MeshStandardMaterial } from "three";
+import { Color, Mesh, MeshStandardMaterial } from "three";
 import { GLTF } from "three-stdlib";
 import { DecalType } from "../../shared/types";
 import { MeshProps } from "@react-three/fiber";
@@ -15,12 +15,15 @@ type GLTFShirt = GLTF & {
 
 type ShirtProps = MeshProps & {
   decals: DecalType[];
+  color: string;
 };
 
-export default function Shirt({ decals, ...props }: ShirtProps) {
+export default function Shirt({ decals, color, ...props }: ShirtProps) {
   const { nodes, materials } = useGLTF(
     "/shirt_baked_collapsed.glb"
   ) as unknown as GLTFShirt;
+  materials.lambert1.color = new Color(color);
+
   const textures = useTexture(decals.map((decal) => decal.src));
   return (
     <mesh

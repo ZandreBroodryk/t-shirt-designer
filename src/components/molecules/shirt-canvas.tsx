@@ -5,10 +5,13 @@ import Shirt from "./shirt";
 import { useState } from "react";
 import { MathUtils, Vector3 } from "three";
 import { DecalType } from "../../shared/types";
+import { HexColorPicker } from "react-colorful";
 
 export default function ShirtCanvas(): JSX.Element {
   const [decals, setDecals] = useState<DecalType[]>([]);
+  const [color, setColor] = useState<string>("#ccc");
 
+  const lightIntensity = 1.1;
   return (
     <>
       <button
@@ -26,6 +29,11 @@ export default function ShirtCanvas(): JSX.Element {
       >
         Add Image
       </button>
+      <HexColorPicker
+        color={color}
+        onChange={setColor}
+        className="absolute top-0 -right-1/2 -translate-x-1/2"
+      />
       <button
         className="p-4 bg-neutral-500 rounded-lg w-fit absolute top-20 right-3 bg-opacity-80 z-10"
         onClick={() => {
@@ -82,7 +90,7 @@ export default function ShirtCanvas(): JSX.Element {
             <input
               type="range"
               min={-0.2}
-              max={0.1}
+              max={0.15}
               step={0.01}
               value={decal.position.y}
               onChange={(event) => {
@@ -110,8 +118,8 @@ export default function ShirtCanvas(): JSX.Element {
             <p>size</p>
             <input
               type="range"
-              min={0.05}
-              max={1}
+              min={0.03}
+              max={0.5}
               step={0.01}
               value={decal.scale}
               onChange={(event) => {
@@ -135,10 +143,10 @@ export default function ShirtCanvas(): JSX.Element {
       </div>
       <div className="grid grid-cols-2 w-full h-full">
         <Canvas camera={{ position: [0, 0, 2.5], fov: 25 }}>
-          <ambientLight intensity={0.5} />
+          <ambientLight intensity={lightIntensity} position={[0, 0, 2.5]} />
           <CameraRig>
             <Center>
-              <Shirt decals={decals} />
+              <Shirt decals={decals} color={color} />
             </Center>
           </CameraRig>
           <OrbitControls />
@@ -152,26 +160,32 @@ export default function ShirtCanvas(): JSX.Element {
             }}
             gl={{ preserveDrawingBuffer: true }}
           >
-            <ambientLight intensity={0.5} />
+            <ambientLight intensity={lightIntensity/2} />
+
+            <ambientLight intensity={lightIntensity/2} position={[0, MathUtils.degToRad(180), -3.5]} />
             <Shirt
               decals={decals}
               rotation={[0, MathUtils.degToRad(90), 0]}
               position={[-0.3, 0.4, 0]}
+              color={color}
             />
             <Shirt
               decals={decals}
               rotation={[0, MathUtils.degToRad(270), 0]}
               position={[0.3, 0.4, 0]}
+              color={color}
             />
             <Shirt
               decals={decals}
               rotation={[0, MathUtils.degToRad(0), 0]}
               position={[-0.3, -0.4, 0]}
+              color={color}
             />
             <Shirt
               decals={decals}
               rotation={[0, MathUtils.degToRad(180), 0]}
               position={[0.3, -0.4, 0]}
+              color={color}
             />
           </Canvas>
         </div>
