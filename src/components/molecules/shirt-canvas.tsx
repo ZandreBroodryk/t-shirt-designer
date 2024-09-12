@@ -143,7 +143,15 @@ export default function ShirtCanvas(): JSX.Element {
       </div>
       <div className="grid grid-cols-2 w-full h-full">
         <Canvas camera={{ position: [0, 0, 2.5], fov: 25 }}>
-          <ambientLight intensity={lightIntensity} position={[0, 0, 2.5]} />
+          <ambientLight intensity={lightIntensity / 2} position={[0, 0, 2.5]} />
+          <directionalLight
+            intensity={lightIntensity / 2}
+            position={[0, 0, 4.5]}
+          />
+          <directionalLight
+            intensity={lightIntensity / 2}
+            position={[0, 0, -4.5]}
+          />
           <CameraRig>
             <Center>
               <Shirt decals={decals} color={color} />
@@ -160,9 +168,10 @@ export default function ShirtCanvas(): JSX.Element {
             }}
             gl={{ preserveDrawingBuffer: true }}
           >
-            <ambientLight intensity={lightIntensity/2} />
-
-            <ambientLight intensity={lightIntensity/2} position={[0, MathUtils.degToRad(180), -3.5]} />
+            <directionalLight
+              intensity={lightIntensity}
+              position={[0, 0, 3.5]}
+            />
             <Shirt
               decals={decals}
               rotation={[0, MathUtils.degToRad(90), 0]}
