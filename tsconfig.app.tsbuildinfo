@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/atoms/backdrop.tsx","./src/components/molecules/camera-rig.tsx","./src/components/molecules/shirt-canvas.tsx","./src/components/molecules/shirt.tsx","./src/shared/types.ts"],"version":"5.6.2"}
