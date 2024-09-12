@@ -25,7 +25,7 @@ export default function Shirt({ decals, ...props }: ShirtProps) {
   return (
     <mesh
       castShadow
-      geometry={nodes.T_Shirt_male as any}
+      geometry={nodes.T_Shirt_male.geometry as any}
       material={materials.lambert1 as any}
       material-roughness={1}
       dispose={null}

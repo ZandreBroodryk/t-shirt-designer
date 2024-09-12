@@ -9,7 +9,7 @@ import Backdrop from "../atoms/backdrop";
 
 export default function ShirtCanvas(): JSX.Element {
   const [decals, setDecals] = useState<DecalType[]>([]);
-  
+
   return (
     <>
       <button
@@ -34,7 +34,7 @@ export default function ShirtCanvas(): JSX.Element {
           const view = document
             .getElementById("all-views")
             ?.querySelector("canvas");
-          link.setAttribute("download", "front.png");
+          link.setAttribute("download", "preview.png");
           link.setAttribute(
             "href",
             view!
@@ -135,7 +135,7 @@ export default function ShirtCanvas(): JSX.Element {
         ))}
       </div>
       <div className="grid grid-cols-2 w-full h-full">
-        <Canvas camera={{ position: [0, 0, 2.5], fov: 25 }} id="left-view">
+        <Canvas camera={{ position: [0, 0, 2.5], fov: 25 }}>
           <ambientLight intensity={0.5} />
           <CameraRig>
             {/* <Backdrop /> */}
